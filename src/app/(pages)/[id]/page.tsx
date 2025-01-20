@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { useRouter, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { createLabel } from "@/app/products/labelCreate";
@@ -24,7 +24,7 @@ type Props = {
 
 function Page() {
     const [product, setProduct] = useState<Props>()
-    const [rates, setRates] = useState([])
+    const [rates, setRates] = useState<{ rateId: string, shippingAmount: { amount: number, currency: string }, carrierId: string }[]>([])
     const [label, setLabel] = useState("")
     const { id } = useParams();
 
@@ -98,7 +98,7 @@ function Page() {
 
 
             <div className='grid grid-cols-3 gap-2 w-[80%] mx-auto'>
-                {rates && rates.map((rate: any) => {
+                {rates && rates.map((rate) => {
                     return (
                         <div key={rate.rateId} className='flex flex-col border p-5' onClick={() => { createLabelFromRate(rate.rateId) }}>
                             <h1>$ : {rate.shippingAmount.amount}</h1>
