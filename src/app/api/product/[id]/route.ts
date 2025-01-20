@@ -9,9 +9,9 @@ export async function GET(req: NextRequest, res: { params: { id: string } }) {
       { id }
     );
     return NextResponse.json(product);
-  } catch (e) {
+  } catch (error) {
     return NextResponse.json(
-      { message: "Failed to fetch products" },
+      { message: (error as Error).message },
       { status: 500 }
     );
   }

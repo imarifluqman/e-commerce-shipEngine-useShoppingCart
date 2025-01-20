@@ -6,9 +6,9 @@ export async function GET() {
     const query = '*[_type == "products"]';
     const products = await client.fetch(query);
     return NextResponse.json(products);
-  } catch (e) {
+  } catch (error) {
     return NextResponse.json(
-      { message: "Failed to fetch products" },
+      { message: (error as Error).message },
       { status: 500 }
     );
   }
