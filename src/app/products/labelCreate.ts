@@ -1,7 +1,7 @@
 async function createLabel(id: string) {
   console.log("Order Now ID:", id);
   const shipTo = {
-    name: "Amanda Miller",
+    name: "Arif Luqman",
     phone: "555-555-5555",
     addressLine1: "525 S Winchester Blvd",
     cityLocality: "San Jose",
