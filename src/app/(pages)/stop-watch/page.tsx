@@ -16,12 +16,12 @@ function Page() {
                 setTime((t) => {
                     if (t.sec === 59) {
                         if (t.min === 59) {
-                            return { ...t, hour: t.hour + 1 }
+                            return { sec:t.sec,min:0, hour: t.hour + 1 }
                         } else {
-                            return { ...t, min: t.min + 1}
+                            return { sec:0, min: t.min + 1,hour:t.hour}
                         }
                     } else {
-                        return {...t, sec: t.sec + 1}
+                        return { sec: t.sec + 1,min:t.min,hour:t.hour}
                     }
                 })
             }, 1000);
