@@ -16,7 +16,7 @@ async function getRatesWithShipmentDetails(
   };
 
   try {
-    const res = await fetch("http://localhost:3000/api/shipengine", {
+    const res = await fetch("https://e-commerce-ship-engine-use-shopping-cart.vercel.app/api/shipengine", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
