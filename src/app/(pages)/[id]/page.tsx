@@ -91,9 +91,9 @@ function Page() {
             <div className='w-full  flex flex-col lg:flex-row md:flex-row justify-center items-center my-10'>
                 {!product && <h1>Loading...</h1>}
                 {product && <>
-                <div className='lg:w-1/2 md-w-1/2 w-full p-5 flex justify-center items-center'>
-                    {product?.image && <Image className='w-[300px]' src={urlFor(product.image).url()} width={500} height={500} alt="image" priority={true} />}
-                </div>
+                    <div className='lg:w-1/2 md-w-1/2 w-full p-5 flex justify-center items-center'>
+                        {product?.image && <Image className='w-[300px]' src={urlFor(product.image).url()} width={500} height={500} alt="image" priority={true} />}
+                    </div>
                     <div className='lg:w-1/2 md-w-1/2 w-full p-5'>
                         <div className='lg:w-[80%] w-[100%] flex flex-col '>
                             <h1 className='text-3xl'>{product?.title}</h1>
@@ -110,10 +110,10 @@ function Page() {
                     <hr />
                     <h1>Shipping Rates</h1>
                     <p>Select a shipping rate</p>
-                    <div className='grid grid-cols-3 gap-2 w-[100%] mx-auto'>
+                    <div className='flex flex-wrap justify-center items-center gap-2 w-[100%] mx-auto'>
                         {rates && rates.map((rate) => {
                             return (
-                                <div key={rate.rateId} className='flex flex-col border p-5 cursor-pointer hover:bg-slate-100' onClick={() => { createLabelFromRate(rate.rateId) }}>
+                                <div key={rate.rateId} className='lg:w-[250px] w-[300px] flex flex-col border p-5 cursor-pointer hover:bg-slate-100' onClick={() => { createLabelFromRate(rate.rateId) }}>
                                     <h1>$ : {rate.shippingAmount.amount}</h1>
                                     <h1>US : {rate.shippingAmount.currency}</h1>
                                     <h1>Rate ID : {rate.rateId}</h1>
@@ -125,7 +125,7 @@ function Page() {
                 </div>
             }
 
-            <div className='w-full flex flex-col justify-center items-center my-10'>
+            <div className='w-[80%] mx-auto flex flex-col justify-center items-center my-10'>
                 {trackingNumber && <h1 className='text-2xl text-green-700 my-10'>Tracking Number : {trackingNumber}</h1>}
                 {label && <img src={label} alt="label" />}
             </div>
