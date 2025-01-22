@@ -35,7 +35,10 @@ function Page() {
 
     useEffect(() => {
         function getPost() {
-            fetch(`http://localhost:3000/api/product/${id}`)
+
+            const api = `https://e-commerce-ship-engine-use-shopping-cart.vercel.app/api/product/${id}`;
+
+            fetch(api || `http://localhost:3000/api/product/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data)
@@ -56,8 +59,9 @@ function Page() {
 
 
     async function createLabelFromRate(id: string) {
+        const api = `https://e-commerce-ship-engine-use-shopping-cart.vercel.app/api/label`;
         try {
-            const res = await fetch(`http://localhost:3000/api/label`, {
+            const res = await fetch(api || `http://localhost:3000/api/label`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
