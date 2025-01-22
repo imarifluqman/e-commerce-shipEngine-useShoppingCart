@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
-import { createLabel } from "@/app/products/labelCreate";
+import { getRatesWithShipmentDetails } from "@/app/getRates-ShipEngine/getRatesFromShipEngine";
 
 
 type Props = {
@@ -46,7 +46,7 @@ function Page() {
 
 
     const orderNow = async (id: string) => {
-        const res = await createLabel(id, setIsLoaded);
+        const res = await getRatesWithShipmentDetails(id, setIsLoaded);
         console.log(res);
         setRates(res);
 

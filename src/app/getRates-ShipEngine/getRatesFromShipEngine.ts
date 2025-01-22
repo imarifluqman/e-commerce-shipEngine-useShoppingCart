@@ -1,4 +1,7 @@
-async function createLabel(id: string, loding: (value: boolean) => void) {
+async function getRatesWithShipmentDetails(
+  id: string,
+  loding: (value: boolean) => void
+) {
   loding(true);
   console.log("Order Now ID:", id);
   const shipTo = {
@@ -30,4 +33,4 @@ async function createLabel(id: string, loding: (value: boolean) => void) {
   }
 }
 
-export { createLabel };
+export { getRatesWithShipmentDetails };
