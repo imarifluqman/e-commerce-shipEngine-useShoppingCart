@@ -26,6 +26,7 @@ function Page() {
     const [product, setProduct] = useState<Props>()
     const [rates, setRates] = useState<{ rateId: string, shippingAmount: { amount: number, currency: string }, carrierId: string }[]>([])
     const [label, setLabel] = useState("")
+    const [trackingNumber, setTrackingNumber] = useState("")
     const [isLoaded, setIsLoaded] = useState(false)
     const { id } = useParams();
 
@@ -65,8 +66,10 @@ function Page() {
             })
 
             const data = await res.json();
-            console.log(data);
+            console.log(data, data.trackingNumber);
+            setTrackingNumber(data.trackingNumber);
             setLabel(data.labelDownload.png);
+            setRates([]);
         } catch (error) {
             console.log(error);
         }
@@ -117,7 +120,8 @@ function Page() {
                 </div>
             }
 
-            <div className='w-full flex justify-center items-center my-10'>
+            <div className='w-full flex flex-col justify-center items-center my-10'>
+                {trackingNumber && <h1 className='text-2xl text-green-700 my-10'>Tracking Number : {trackingNumber}</h1>}
                 {label && <img src={label} alt="label" />}
             </div>
         </>
