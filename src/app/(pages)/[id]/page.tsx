@@ -88,18 +88,19 @@ function Page() {
     return (
         <>
 
-            <div className='w-full  flex justify-center items-center my-10'>
+            <div className='w-full  flex flex-col lg:flex-row md:flex-row justify-center items-center my-10'>
                 {!product && <h1>Loading...</h1>}
-                {product && <><div className='w-1/2 flex justify-center items-center'>
+                {product && <>
+                <div className='lg:w-1/2 md-w-1/2 w-full p-5 flex justify-center items-center'>
                     {product?.image && <Image className='w-[300px]' src={urlFor(product.image).url()} width={500} height={500} alt="image" priority={true} />}
                 </div>
-                    <div className='w-1/2'>
-                        <div className='w-[70%] flex flex-col gap-5'>
+                    <div className='lg:w-1/2 md-w-1/2 w-full p-5'>
+                        <div className='lg:w-[80%] w-[100%] flex flex-col '>
                             <h1 className='text-3xl'>{product?.title}</h1>
                             <p>{product?.description}</p>
                             <h1 className='text-2xl text-red-600'>Rs : {product?.price}</h1>
                             <p className='text-yellow-800'>Rating : {product?.rating.rate}</p>
-                            <button onClick={() => { orderNow(product._id) }} className="border py-3 px-4 border-red-700 rounded hover:bg-red-700 hover:text-white" disabled={isLoaded}>{isLoaded ? "Loading..." : "Get Shipping Rates"}</button>
+                            <button onClick={() => { orderNow(product._id) }} className="w-[50%] border mt-5 py-3 px-4 border-red-700 rounded hover:bg-red-700 hover:text-white" disabled={isLoaded}>{isLoaded ? "Loading..." : "Get Shipping Rates"}</button>
                         </div>
                     </div></>}
             </div>

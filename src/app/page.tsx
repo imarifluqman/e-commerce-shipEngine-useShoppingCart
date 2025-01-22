@@ -52,7 +52,7 @@ function Page() {
 
       {products.length > 0 && <div className="w-full flex flex-wrap justify-evenly items-center gap-4 mt-5  ">
         {products?.map((product) => (
-          <Link href={product._id} key={product.id} className="w-[200px] h-[300px] bg-white shadow-lg rounded-lg flex flex-col items-center">
+          <Link href={product._id} key={product.id} className="w-[300px] h-[300px] bg-white shadow-lg rounded-lg flex flex-col items-center">
             <div className="w-full h-[200px] flex justify-center items-center">
               <img src={urlFor(product.image).url()} alt={product.title} className="w-full h-full object-contain" />
             </div>
