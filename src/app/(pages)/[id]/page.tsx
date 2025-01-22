@@ -24,7 +24,7 @@ type Props = {
 
 function Page() {
     const [product, setProduct] = useState<Props>()
-    const [rates, setRates] = useState<{ rateId: string, shippingAmount: { amount: number, currency: string }, carrierId: string }[]>([])
+    const [rates, setRates] = useState<{ rateId: string, shippingAmount: { amount: number, currency: string }, carrierId: string, deliveryDays: number }[]>([])
     const [label, setLabel] = useState("")
     const [trackingNumber, setTrackingNumber] = useState("")
     const [isLoaded, setIsLoaded] = useState(false)
@@ -116,6 +116,7 @@ function Page() {
                                 <div key={rate.rateId} className='lg:w-[250px] w-[300px] flex flex-col border p-5 cursor-pointer hover:bg-slate-100' onClick={() => { createLabelFromRate(rate.rateId) }}>
                                     <h1>$ : {rate.shippingAmount.amount}</h1>
                                     <h1>US : {rate.shippingAmount.currency}</h1>
+                                    <h1>Delivery Days : {rate.deliveryDays}</h1>
                                     <h1>Rate ID : {rate.rateId}</h1>
                                     <h1>Carrier ID : {rate.carrierId}</h1>
                                 </div>
