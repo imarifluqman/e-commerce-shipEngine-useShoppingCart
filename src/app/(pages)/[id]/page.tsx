@@ -100,7 +100,7 @@ function Page() {
                             <p>{product?.description}</p>
                             <h1 className='text-2xl text-red-600'>Rs : {product?.price}</h1>
                             <p className='text-yellow-800'>Rating : {product?.rating.rate}</p>
-                            <button onClick={() => { orderNow(product._id) }} className="w-[50%] border mt-5 py-3 px-4 border-red-700 rounded hover:bg-red-700 hover:text-white" disabled={isLoaded}>{isLoaded ? "Loading..." : "Get Shipping Rates"}</button>
+                            <button onClick={() => { orderNow(product._id) }} className="lg:w-[50%] w-[100%] border mt-5 py-3 px-4 border-red-700 rounded hover:bg-red-700 hover:text-white" disabled={isLoaded}>{isLoaded ? "Loading..." : "Get Shipping Rates"}</button>
                         </div>
                     </div></>}
             </div>
