@@ -26,6 +26,7 @@ function Page() {
     const [product, setProduct] = useState<Props>()
     const [rates, setRates] = useState<{ rateId: string, shippingAmount: { amount: number, currency: string }, carrierId: string }[]>([])
     const [label, setLabel] = useState("")
+    const [isLoaded, setIsLoaded] = useState(false)
     const { id } = useParams();
 
 
@@ -44,7 +45,7 @@ function Page() {
 
 
     const orderNow = async (id: string) => {
-        const res = await createLabel(id);
+        const res = await createLabel(id, setIsLoaded);
         console.log(res);
         setRates(res);
 
@@ -91,24 +92,30 @@ function Page() {
                             <p>{product?.description}</p>
                             <h1 className='text-2xl text-red-600'>Rs : {product?.price}</h1>
                             <p className='text-yellow-800'>Rating : {product?.rating.rate}</p>
-                            <button onClick={() => { orderNow(product._id) }} className="border py-3 px-4 border-red-700 rounded hover:bg-red-700 hover:text-white">Order Now</button>
+                            <button onClick={() => { orderNow(product._id) }} className="border py-3 px-4 border-red-700 rounded hover:bg-red-700 hover:text-white" disabled={isLoaded}>{isLoaded ? "Loading..." : "Get Shipping Rates"}</button>
                         </div>
                     </div></>}
             </div>
 
-
-            <div className='grid grid-cols-3 gap-2 w-[80%] mx-auto'>
-                {rates && rates.map((rate) => {
-                    return (
-                        <div key={rate.rateId} className='flex flex-col border p-5' onClick={() => { createLabelFromRate(rate.rateId) }}>
-                            <h1>$ : {rate.shippingAmount.amount}</h1>
-                            <h1>US : {rate.shippingAmount.currency}</h1>
-                            <h1>Rate ID : {rate.rateId}</h1>
-                            <h1>Carrier ID : {rate.carrierId}</h1>
-                        </div>
-                    )
-                })}
-            </div>
+            {rates.length > 0 &&
+                <div className='flex flex-col gap-2 w-[80%] mx-auto mt-10'>
+                    <hr />
+                    <h1>Shipping Rates</h1>
+                    <p>Select a shipping rate</p>
+                    <div className='grid grid-cols-3 gap-2 w-[100%] mx-auto'>
+                        {rates && rates.map((rate) => {
+                            return (
+                                <div key={rate.rateId} className='flex flex-col border p-5 cursor-pointer hover:bg-slate-100' onClick={() => { createLabelFromRate(rate.rateId) }}>
+                                    <h1>$ : {rate.shippingAmount.amount}</h1>
+                                    <h1>US : {rate.shippingAmount.currency}</h1>
+                                    <h1>Rate ID : {rate.rateId}</h1>
+                                    <h1>Carrier ID : {rate.carrierId}</h1>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            }
 
             <div className='w-full flex justify-center items-center my-10'>
                 {label && <img src={label} alt="label" />}

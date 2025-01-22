@@ -1,4 +1,5 @@
-async function createLabel(id: string) {
+async function createLabel(id: string, loding: (value: boolean) => void) {
+  loding(true);
   console.log("Order Now ID:", id);
   const shipTo = {
     name: "Arif Luqman",
@@ -22,6 +23,7 @@ async function createLabel(id: string) {
 
     const data = await res.json();
 
+    loding(false);
     return data.rateResponse.rates;
   } catch (error) {
     console.error("Error:", error);
