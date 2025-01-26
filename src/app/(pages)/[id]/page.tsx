@@ -35,10 +35,7 @@ function Page() {
 
     useEffect(() => {
         function getPost() {
-
-            const api = `https://e-commerce-ship-engine-use-shopping-cart.vercel.app/api/product/${id}`;
-
-            fetch(api || `http://localhost:3000/api/product/${id}`)
+            fetch(`api/product/${id}`)
                 .then(res => res.json())
                 .then(data => {
                     setProduct(data)

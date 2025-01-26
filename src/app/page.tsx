@@ -28,9 +28,8 @@ function Page() {
   const dataFetch = () => {
     setIsLoaded(true);
 
-    const api = "https://e-commerce-ship-engine-use-shopping-cart.vercel.app/api/product";
 
-    fetch(api || "http://localhost:3000/api/product")
+    fetch("api/product")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
